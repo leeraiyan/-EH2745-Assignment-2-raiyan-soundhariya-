@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+{% block content %}
+    
+    <script>
+        // Define the amount_dict in JavaScript
+        var amount_dict = {
+            1: 'Normal Operation',
+            2: 'High Load',
+            3: 'Low Load',
+            4: 'Disconnect Generator 3 (High Load)',
+            5: 'Disconnect Generator 3 (Low Load)',
+            6: 'Disconnect Line Between Bus 5 and 6 (High Load)',
+            7: 'Disconnect Line Between Bus 5 and 6 (Low Load)'
+        };
+    </script>
+
+    <div class="col-sm-10 ml-auto mr-auto ">
+        <H2>Network Data</H2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <!-- <th scope="col">Date</th> -->
+                    <th scope="col">Voltage Magnitudes [Bus 1 to Bus 9]</th>
+                    <th scope="col">Voltage Angle [Bus 1 to Bus 9]</th>
+                    <th scope="col">Case</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in entries %}
+                    <tr>
+                        <th scope="row">{{loop.index}}</th>
+                        <!-- <td>{{entry.date.strftime("%m-%d-%Y")}}</td> -->
+                        <td>{{entry.type}}</td>
+                        <td>{{ entry.category }}</td>
+                        <td>
+                            <script>
+                                // Use JavaScript to get the corresponding string from the amount_dict
+                                document.write(amount_dict[{{ entry.amount }}]);
+                            </script>
+                        </td>
+                        <td><a href="{{ url_for('delete', entry_id = entry.id) }}" class="btn btn-outline-danger btn-sm">Delete</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

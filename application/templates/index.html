@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="col-xs-10 col-sm-6 col-md-6">
+    <div class="text-center">
+        <h2>Network Topology</h2>
+        <img src="{{ url_for('static', filename='networkTopology.png') }}" alt="Network Topology" class="img-fluid">
+    </div>
+    <div class="card card-style mb-2">
+        <div class="card-body">
+            <form action="" method="POST" id="myForm">
+                {{ form.csrf_token() }}
+                <fieldset class="form-group">               
+                    <div class="form-group">
+                        <label class="form-control-label">Select Cases [at least two]:</label>
+                        {{ form.example }}
+                    </div>
+            
+                    <div class="form-group border-bottom pb-3">
+                        <button type="submit" class="btn btn-outline-info" id="submitButton" onclick="changeButtonText()">Submit</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function changeButtonText() {
+        var button = document.getElementById('submitButton');
+        button.innerHTML = 'Loading...';
+    }
+</script>
+{% endblock %}
