@@ -4,7 +4,9 @@ A [web application](http://butterytoucan.eu.pythonanywhere.com/) that runs simul
 
 ## Features
 * Fully-functional and intuitive [web application](http://butterytoucan.eu.pythonanywhere.com/)
-* Up to seven selectable cases to simulate
+* Allows up to seven selectable cases for simulations
+* Stores data in a sqlite database
+* Displays time series data in a table
 * Plots the results in several graphs
 * Provides a dashboard for viewing the results
 * Catches errors gracefully
@@ -13,8 +15,6 @@ A [web application](http://butterytoucan.eu.pythonanywhere.com/) that runs simul
 1. Clone this repository
 2. Use Python 3.11 to run `pip install -r requirements.txt` (A virtual environment is highly recommended)
 3. Use Python 3.11 to run `python run.py` (NOTE: for convenience, use the [web application](http://butterytoucan.eu.pythonanywhere.com/) instead!)
-
-
 
 ![Main UI](docs/images/ui.png)
 
