@@ -22,12 +22,12 @@ A [web application](http://butterytoucan.eu.pythonanywhere.com/) that runs simul
 
 ## Python Files Included
 Project is created with:
-* `CIMXMLParser.py`: Contains the class `CIM_XML_parser`
+* `Agent_KMeans.py`: Contains the class `AgentKMeans`
 * `PandaPowerManager.py`: Contains the class `PandaPowerWriter`
 * `gui.py`: Contains GUI-related information
 
 ## Class Information
-* AgentKMeans class represents an implementation of the K-means clustering algorithm.
+* `AgentKMeans` class represents an implementation of the K-means clustering algorithm.
   - Constructor: __init__(self) initializes the class instance.
   - Methods:
   -   `euclidean_distance(self, x1, x2)`: Calculates the Euclidean distance between two points x1 and x2.
