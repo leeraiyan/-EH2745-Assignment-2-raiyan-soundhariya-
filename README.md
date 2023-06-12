@@ -26,6 +26,8 @@ This project is created with (excluding files related to Flask):
 * `applicationAgent_KNN.py`: Contains the class `AgentKNN`
 * `application/DataGenerator.py`: Contains the class `AgentKNN`
 
+## Class Information
+
 * `DataGenerator ` class represents an implementation of the K-Nearest Neighbors (KNN) algorithm.
   - Constructor: `__init__(self)` initializes the class instance and defines an empty PandaPower network.
   - Methods:
@@ -43,8 +45,6 @@ This project is created with (excluding files related to Flask):
   - `operation_disconnectline_highLoad(net, timesteps)`: This method simulates the high load operation with a disconnected transmission line. It disconnects the line between bus 5 and bus 6, generates load profile data using the highload_data method, creates controllers using the pq_controllers method, and runs the time series simulation. After the simulation, the line is reconnected.      
   - `operation_disconnectline_lowLoad(net, timesteps)`: This method simulates the low load operation with a disconnected transmission line. It disconnects the line between bus 5 and bus 6.
 
-
-## Class Information
 * `AgentKMeans` class represents an implementation of the K-means clustering algorithm.
   - Constructor: `__init__(self)` initializes the class instance.
   - Methods:
