@@ -16,6 +16,8 @@ A [web application](http://butterytoucan.eu.pythonanywhere.com/) that runs simul
 2. Use Python 3.11 to run `pip install -r requirements.txt` (A virtual environment is highly recommended)
 3. Use Python 3.11 to run `python run.py` (NOTE: for convenience, use the [web application](http://butterytoucan.eu.pythonanywhere.com/) instead!)
 
+## Interface
+
 ![Main UI](docs/images/ui.png)
 ![Data Page](docs/images/data.png)
 ![Results Page](docs/images/results.png)
