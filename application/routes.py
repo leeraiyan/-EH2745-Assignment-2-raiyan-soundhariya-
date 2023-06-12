@@ -3,9 +3,9 @@ from flask import render_template, url_for, redirect,flash, get_flashed_messages
 from application.form import UserDataForm
 from application.models import IncomeExpenses
 from application import db
-from application.dataGenerator import source_network, simulate
+from application.DataGenerator import *
 from application.Agent_KMeans import *
-from application.GraphPlotter import plot
+from application.GraphPlotter import *
 from application.Agent_KNN import *
 import csv
 import json
@@ -46,13 +46,19 @@ def index():
         except OSError as e:
             print( f'Error deleting directory: {str(e)}' ) 
 
-        #prepare new data for database
-        network = source_network()
+        # Prepare new data using data generator
+        # Data generator writes output data into xlsx files
+        datagenerator = DataGenerator()
+        datagenerator.source_network()
         combined_df = pd.DataFrame(columns=['vm1','vm2','vm3','vm4','vm5','vm6','vm7','vm8','vm9',
                'degree1','degree2','degree3','degree4','degree5','degree6','degree7','degree8','degree9'])
         labels = []
+
+
+        # Read all generated data from xlsx files
+        # Store them into database
         for case in form.example.data:
-            simulate(network,case,70)
+            datagenerator.simulate(case,70)
             
             df_mag = pd.read_excel(f'./data/{case}/res_bus/vm_pu.xlsx')
             df_mag = df_mag.drop(columns=['Unnamed: 0'])
@@ -63,15 +69,9 @@ def index():
             df_deg = df_deg.drop(columns=['Unnamed: 0'])
             new_column_names = {0: 'degree1', 1: 'degree2', 2: 'degree3', 3: 'degree4', 4: 'degree5', 5: 'degree6', 6: 'degree7', 7: 'degree8', 8: 'degree9'}
             df_deg.rename(columns=new_column_names, inplace=True)
-
-
-            #combine the two df results
             concatenated_df = pd.concat([df_mag, df_deg], axis=1)
             
-            # print(concatenated_df)
-            # Iterate through rows
             for index, row in concatenated_df.iterrows():
-                # Access each cell in the row
                 counter = 0
                 voltage_mag = ""
                 voltage_ang = ""
@@ -87,38 +87,41 @@ def index():
             
             concatenated_df.reset_index(drop=True, inplace=True)
             combined_df = pd.concat([combined_df, concatenated_df], ignore_index=True)
+        db.session.commit()
 
-        agentkmeans = AgentKMeans()
-        k, J_r, means_r, final_cluster = agentkmeans.kmeans_clustering(combined_df)
-       
+
 
         # Execute the query to fetch data from the database
+        # Store all information into csv file for agents to use
         query = db.session.query(IncomeExpenses).all()
-
-        # Specify the file path for the CSV file
         csv_file_path = 'check.csv'
-
         # Open the CSV file in write mode
         with open(csv_file_path, 'w', newline='') as file:
             # Create a CSV writer
             writer = csv.writer(file)
-            
-            
-
-            
-            # Write the data rows
             for row in query:
                 vm = row.type.split(",")
 
                 va = row.category.split(",")
                 writer.writerow([vm[0],vm[1],vm[2],vm[3],vm[4],vm[5],vm[6],vm[7],vm[8],
                                   va[0],va[1],va[2],va[3],va[4],va[5],va[6],va[7],va[8],
-                                  row.amount])  # Replace with your column values
+                                  row.amount])
 
+
+        # Instantiate agent for KMeans clustering
+        # Run algorithm
+        agentkmeans = AgentKMeans()
+        k, J_r, means_r, final_cluster = agentkmeans.kmeans_clustering(combined_df)
+
+        # Instantiate agent for KNN classifier
+        # Run algorithm
         agentknn = AgentKNN()
         agentknn.KNN()
-        filenames = plot(combined_df, final_cluster) 
-        db.session.commit()
+
+        # Plot results in matplotlib
+        plotter = GraphPlotter()
+        plotter.plot(combined_df, final_cluster) 
+        
         flash(f"Success! Generated data for {len(form.example.data)} cases, 70 datapoints each", 'success')
         return redirect(url_for('add_expense'))
     return render_template('index.html', title="Input Data", form=form)
