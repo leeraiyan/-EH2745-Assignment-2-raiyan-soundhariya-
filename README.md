@@ -21,11 +21,11 @@ A [web application](http://butterytoucan.eu.pythonanywhere.com/) that runs simul
 ![Results Page](docs/images/results.png)
 
 ## Python Files Included
-Project is created with:
-* `run.py`: Runs the Flask app
+This project is created with (excluding files related to Flask):
 * `application/Agent_KMeans.py`: Contains the class `AgentKMeans`
 * `applicationAgent_KNN.py`: Contains the class `AgentKNN`
-* `capplication/DataGenerator.py`: Contains the class `AgentKNN`
+* `application/DataGenerator.py`: Contains the class `AgentKNN`
+
 
 ## Class Information
 * `AgentKMeans` class represents an implementation of the K-means clustering algorithm.
