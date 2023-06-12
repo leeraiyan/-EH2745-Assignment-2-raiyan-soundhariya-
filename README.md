@@ -22,13 +22,14 @@ A [web application](http://butterytoucan.eu.pythonanywhere.com/) that runs simul
 
 ## Python Files Included
 Project is created with:
-* `Agent_KMeans.py`: Contains the class `AgentKMeans`
-* `PandaPowerManager.py`: Contains the class `PandaPowerWriter`
-* `gui.py`: Contains GUI-related information
+* `run.py`: Runs the Flask app
+* `application/Agent_KMeans.py`: Contains the class `AgentKMeans`
+* `applicationAgent_KNN.py`: Contains the class `AgentKNN`
+* `capplication/DataGenerator.py`: Contains the class `AgentKNN`
 
 ## Class Information
 * `AgentKMeans` class represents an implementation of the K-means clustering algorithm.
-  - Constructor: __init__(self) initializes the class instance.
+  - Constructor: `__init__(self)` initializes the class instance.
   - Methods:
   -   `euclidean_distance(self, x1, x2)`: Calculates the Euclidean distance between two points x1 and x2.
   -   `calc_mean(self, data, types, k)`: Calculates the mean of the number of data points based on the provided data, types, and the number of centroids k.
@@ -36,23 +37,15 @@ Project is created with:
   -   `calc_cost(self, data, means, types)`: Calculates the cost function based on the provided data, means, and types.
   -   `kmeans_clustering(self, data, init_guess=3)`: Performs K-means clustering on the given data using the specified number of initial guesses init_guess. Returns the number of means, the cost function for the best value, the mean values, and the final cluster assignments.
 
-* `PandaPowerWriter` class is initialised by passing the outputs of the `CIM_XML_parser.run()` function. It handles the conversion of all equipment information into the creation format of a PandaPower network instance and its various equipment. It contains the following methods:
-  - `__init__(self, dictEquipmentIDtoType, dictEquipment)`: The constructor method initializes the PandaPowerWriter object and sets the equipment ID-to-type dictionary and the equipment dictionary.
-  - `initialiseNetwork(self)`: This method creates an empty pandapower network and calls other methods to initialize different components of the network, such as buses, lines, switches, loads, transformers, generators, shunts, and wards.
-  - `getVoltageLevel(self, nodeID)`: Returns the voltage level associated with a node as a float.
-  - `toHTML(self, htmlFileName)`: Outputs a HTML file that represents the pandapower network.
-  - `getAssociatedSubstation(self, nodeID)`: Returns the name of the substation associated with a given equipment.
-  - `getAssociatedBus(self, terminalID)`: Returns the ID of the connectivity node that corresponds to a particular terminal.
-  - `getLineMaxCurrent(self, lineID)`: Returns the maximum current limit of a line as a float.
-  - `initialiseBuses(self, newBusID)`: Creates the buses in the pandapower network. If newBusID is provided, it creates a new bus with the given ID.
-  - `initialiseLines(self)`: Creates the lines in the pandapower network based on the equipment data.
-  - `initialiseSwitches(self)`: Creates the switches in the pandapower network based on the equipment data.
-  - `initialiseTransformer(self)`: Creates transformer objects in the pandapower network based on the equipment data.
-  - `initialiseLoads(self)`: Creates load objects in the pandapower network based on the equipment data.
-  - `initialiseStaticGen(self)`: Creates static generator objects in the pandapower network based on the equipment data.
-  - `initialiseMachines(self)`: Creates generator objects in the pandapower network based on the equipment data.
-  - `initialiseShunt(self)`: Creates linear shunt objects in the pandapower network based on the equipment data.
-  - `initialiseWard(self)`: Creates ward objects in the pandapower network based on the equipment data.
+* `AgentKNN` class represents an implementation of the K-Nearest Neighbors (KNN) algorithm.
+  - Constructor: `__init__(self)` initializes the class instance and defines the mapping of class names to integers.
+  - Methods:
+  - `loadDataset(self, dataRatio, trainingSet=[], testSet=[])`: Loads the dataset from a CSV file and splits it into training and testing sets based on the given data ratio.
+  - `euclideanDistance(self, testSet1, trainSet1, length)`: Calculates the Euclidean distance between a test instance and a training instance.
+  - `KNNeighbours(self, trainingSet, testInstance, k)`: Finds the k nearest neighbors in the training set for a given test instance.
+  - `predict(self, neighbours)`: Predicts the class for a test instance based on the majority class of its neighbors.
+  - `calculateAccuracy(self, testSet, predictions)`: Calculates the testing accuracy of the KNN algorithm by comparing the predicted classes with the actual classes in the test set. Also, generates a confusion matrix plot.
+  - `KNN(self)`: Executes the KNN algorithm by preparing the data, finding neighbors, making predictions, calculating accuracy, and displaying the results.
 
 
 
