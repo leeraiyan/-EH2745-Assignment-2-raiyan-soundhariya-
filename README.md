@@ -1,9 +1,11 @@
 # EH2745 Assignment 2
 
-A [web application](http://butterytoucan.eu.pythonanywhere.com/) that runs simulations on a PandaPower network, and performs Supervised and Unsupervised Machine Learning on the resulting time series dataset.
+NOTE: The web application is no longer hosted, refer to the [YouTube video](https://youtu.be/L-uo2I37MrU) for a walkthrough.
+
+A [web application](https://youtu.be/L-uo2I37MrU) that runs simulations on a PandaPower network, and performs Supervised and Unsupervised Machine Learning on the resulting time series dataset.
 
 ## Features
-* Fully-functional and intuitive [web application](http://butterytoucan.eu.pythonanywhere.com/)
+* Fully-functional and intuitive [web application](https://youtu.be/L-uo2I37MrU)
 * Allows up to seven selectable cases for simulations
 * Stores data in a sqlite database
 * Displays time series data in a table
@@ -14,7 +16,7 @@ A [web application](http://butterytoucan.eu.pythonanywhere.com/) that runs simul
 ## Installation Instructions
 1. Clone this repository
 2. Use Python 3.11 to run `pip install -r requirements.txt` (A virtual environment is highly recommended)
-3. Use Python 3.11 to run `python run.py` (NOTE: for convenience, use the [web application](http://butterytoucan.eu.pythonanywhere.com/) instead!)
+3. Use Python 3.11 to run `python run.py` (NOTE: for convenience, use the [web application](https://youtu.be/L-uo2I37MrU) instead!)
 
 ## Interface
 
