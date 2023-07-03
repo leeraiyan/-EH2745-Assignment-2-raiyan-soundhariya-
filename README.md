@@ -1,6 +1,6 @@
 # EH2745 Assignment 2
 
-NOTE: THE WEB APPLICATION IS NO LONGER HOSTED. REFER TO THE [YouTube VIDEO](https://youtu.be/L-uo2I37MrU) FOR A WALKTHROUGH INSTEAD. [03/07]23]
+NOTE: THE WEB APPLICATION IS NO LONGER HOSTED. REFER TO THE [VIDEO](https://youtu.be/L-uo2I37MrU) FOR A WALKTHROUGH INSTEAD. [03/07]23]
 
 A [web application](https://youtu.be/L-uo2I37MrU) that runs simulations on a PandaPower network, and performs Supervised and Unsupervised Machine Learning on the resulting time series dataset.
 
